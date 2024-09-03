@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import useInitOneSignal from './useOneSignal';
 import OneSignal from "react-onesignal";
 
@@ -5,6 +6,7 @@ function App() {
   useInitOneSignal();
 
   const triggerPrompt = async () => {
+    console.log('kancgel')
     try {
       await OneSignal.Notifications.requestPermission();
     } catch (e) {
@@ -12,9 +14,14 @@ function App() {
     }
   }
 
+  
+  useEffect(() => {
+    triggerPrompt()
+  }, [])
+
   return (
     <div className="App">
-      <button onClick={triggerPrompt}>Trigger prompt</button>
+      <button>Trigger prompt</button>
     </div>
   );
 }
