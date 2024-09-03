@@ -1,0 +1,14 @@
+# next.js
+/.next/
+/out/
+.env.local
+
+tsconfig.tsbuildinfo
+
+# Sentry
+.sentryclirc
+
+
+# optimization tools
+
+source.html
