@@ -32,11 +32,13 @@ const useInitOneSignal = () => {
       // Attach event listeners for click or scroll
       window.addEventListener("click", handleUserInteraction);
       window.addEventListener("scroll", handleUserInteraction);
+      window.addEventListener("load", handleUserInteraction);
     });
 
     return () => {
       window.removeEventListener("click", handleUserInteraction);
       window.removeEventListener("scroll", handleUserInteraction);
+      window.removeEventListener("load", handleUserInteraction);
     };
   }, []);
 };
