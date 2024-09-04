@@ -17,6 +17,7 @@ function App() {
       <h2>Click</h2>
       <button onClick={requestPermission}>Trigger prompt</button>
       <div onClick={requestPermission}>div click</div>
+      <hr />
     </div>
   );
 }
