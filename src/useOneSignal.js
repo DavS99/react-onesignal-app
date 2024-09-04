@@ -3,11 +3,19 @@ import OneSignal from "react-onesignal";
 
 const useInitOneSignal = () => {
   useEffect(() => {
-    const requestPermission = async () => {
-      try {
-        await OneSignal.Notifications.requestPermission();
-      } catch (error) {
-        console.error("Failed to request permission:", error);
+    const requestPermission = () => {
+      if (
+        OneSignal &&
+        OneSignal.Notifications &&
+        OneSignal.Notifications.requestPermission
+      ) {
+        OneSignal.Notifications.requestPermission()
+          .then((permission) => {
+            console.log("Notification permission status:", permission);
+          })
+          .catch((error) => {
+            console.error("Permission request failed:", error);
+          });
       }
     };
 
@@ -16,8 +24,10 @@ const useInitOneSignal = () => {
       apiKey: "ZTBhNTQ0ZjQtMmQ5MS00NTE5LTg4YjAtNDA1MzdiNzdhNmY2",
       allowLocalhostAsSecureOrigin: true,
     }).then(() => {
-      window.onload = requestPermission;
+      window.addEventListener("load", requestPermission);
     });
+
+    return () => window.removeEventListener("load", requestPermission);
   }, []);
 };
 
