@@ -1,12 +1,11 @@
-import { useEffect } from "react";
 import useInitOneSignal from "./useOneSignal";
-import OneSignal from "react-onesignal";
 
 function App() {
   useInitOneSignal();
 
   return (
     <div className="App">
+      <h2>Click</h2>
       <button>Trigger prompt</button>
     </div>
   );
