@@ -4,6 +4,7 @@ import OneSignal from "react-onesignal";
 const useInitOneSignal = () => {
   useEffect(() => {
     const requestPermission = () => {
+      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
       if (
         OneSignal &&
         OneSignal.Notifications &&
