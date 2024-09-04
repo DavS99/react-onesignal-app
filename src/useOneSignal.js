@@ -24,9 +24,9 @@ const useInitOneSignal = () => {
       appId: "66c2daed-9dfa-4c9b-9d2b-aba613424cef",
       apiKey: "ZTBhNTQ0ZjQtMmQ5MS00NTE5LTg4YjAtNDA1MzdiNzdhNmY2",
       allowLocalhostAsSecureOrigin: true,
-    }).then(() => {
-      window.addEventListener("load", requestPermission);
-    });
+    }).then(() => {});
+
+    window.addEventListener("load", requestPermission);
 
     return () => window.removeEventListener("load", requestPermission);
   }, []);
