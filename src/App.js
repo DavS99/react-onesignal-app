@@ -47,14 +47,19 @@ function App() {
   const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
-    // Check the current permission status when the component loads
-    if (notificationStatus === "default") {
-      setShowBanner(true); // Show banner if user hasn't granted or denied permissions
-    }
+    // // Check the current permission status when the component loads
+    // if (notificationStatus === "default") {
+    //   setShowBanner(true); // Show banner if user hasn't granted or denied permissions
+    // } else {
+    //   setShowBanner(false); // Hide banner if permission is granted or denied
+    // }
+
+    setShowBanner(notificationStatus === "default"); // Show banner if user hasn't granted or denied permissions
   }, [notificationStatus]);
 
   useInitOneSignal();
   const handleRequestPermission = () => {
+    setShowBanner(false); // Hide banner after permission request
     if (
       OneSignal &&
       OneSignal.Notifications &&
@@ -64,7 +69,6 @@ function App() {
         .then((permission) => {
           console.log("Notification permission status:", permission);
           setNotificationStatus(permission); // Update the permission status
-          setShowBanner(false); // Hide banner after permission request
         })
         .catch((error) => {
           console.error("Permission request failed:", error);
