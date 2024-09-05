@@ -36,9 +36,9 @@ const useInitOneSignal = () => {
     });
 
     return () => {
-      window.removeEventListener("click", handleUserInteraction);
       window.removeEventListener("scroll", handleUserInteraction);
-      window.removeEventListener("load", handleUserInteraction);
+      window.removeEventListener("scroll", handleUserInteraction);
+      window.removeEventListener("beforeunload", handleUserInteraction);
     };
   }, []);
 };
