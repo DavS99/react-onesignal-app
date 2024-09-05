@@ -44,6 +44,8 @@ function App() {
     Notification.permission
   );
 
+  console.log(notificationStatus, "notificationStatus");
+
   const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
