@@ -54,15 +54,6 @@ function App() {
   }, [notificationStatus]);
 
   useInitOneSignal();
-  const requestPermission = async () => {
-    try {
-      await OneSignal.Notifications.requestPermission();
-      console.log("request permission on");
-    } catch (error) {
-      console.error("Failed to request permission:", error);
-    }
-  };
-
   const handleRequestPermission = () => {
     if (
       OneSignal &&
