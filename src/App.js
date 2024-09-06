@@ -44,11 +44,28 @@ function App() {
     Notification.permission
   );
 
-  console.log(notificationStatus, "notificationStatus");
-
   const [showBanner, setShowBanner] = useState(false);
 
+  useEffect(() => {}, [notificationStatus]);
+
   useInitOneSignal();
+  const handleRequestPermission = () => {
+    if (
+      OneSignal &&
+      OneSignal.Notifications &&
+      OneSignal.Notifications.requestPermission
+    ) {
+      OneSignal.Notifications.requestPermission()
+        .then((permission) => {
+          console.log("Notification permission status:", permission);
+          setNotificationStatus(permission); // Update the permission status
+          setShowBanner(false); // Hide banner after permission request
+        })
+        .catch((error) => {
+          console.error("Permission request failed:", error);
+        });
+    }
+  };
 
   const handleCloseBanner = () => {
     setShowBanner(false); // Close the banner
@@ -63,7 +80,9 @@ function App() {
             We'd love to send you notifications for important updates and
             exclusive offers.
           </p>
-          <button style={buttonStyles}>Allow Notifications</button>
+          <button onClick={handleRequestPermission} style={buttonStyles}>
+            Allow Notifications
+          </button>
           <button onClick={handleCloseBanner} style={closeButtonStyles}>
             X
           </button>
