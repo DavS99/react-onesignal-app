@@ -9,6 +9,7 @@ const useInitOneSignal = () => {
       allowLocalhostAsSecureOrigin: true,
     }).then(() => {
       console.log("init");
+      Notification.requestPermission();
     });
   }, []);
 };

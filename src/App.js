@@ -48,35 +48,7 @@ function App() {
 
   const [showBanner, setShowBanner] = useState(false);
 
-  useEffect(() => {
-    // // Check the current permission status when the component loads
-    // if (notificationStatus === "default") {
-    //   setShowBanner(true); // Show banner if user hasn't granted or denied permissions
-    // } else {
-    //   setShowBanner(false); // Hide banner if permission is granted or denied
-    // }
-
-    setShowBanner(notificationStatus === "default"); // Show banner if user hasn't granted or denied permissions
-  }, [notificationStatus]);
-
   useInitOneSignal();
-  const handleRequestPermission = () => {
-    setShowBanner(false); // Hide banner after permission request
-    if (
-      OneSignal &&
-      OneSignal.Notifications &&
-      OneSignal.Notifications.requestPermission
-    ) {
-      OneSignal.Notifications.requestPermission()
-        .then((permission) => {
-          console.log("Notification permission status:", permission);
-          setNotificationStatus(permission); // Update the permission status
-        })
-        .catch((error) => {
-          console.error("Permission request failed:", error);
-        });
-    }
-  };
 
   const handleCloseBanner = () => {
     setShowBanner(false); // Close the banner
@@ -91,9 +63,7 @@ function App() {
             We'd love to send you notifications for important updates and
             exclusive offers.
           </p>
-          <button onClick={handleRequestPermission} style={buttonStyles}>
-            Allow Notifications
-          </button>
+          <button style={buttonStyles}>Allow Notifications</button>
           <button onClick={handleCloseBanner} style={closeButtonStyles}>
             X
           </button>
